@@ -1,0 +1,19 @@
+{
+  "name": "siege-storm-game-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tompori/siege-storm-game-tracker.git",
+  "author": "tompori <nuorivaara@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  }
+}
