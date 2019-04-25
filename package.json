@@ -6,6 +6,8 @@
   "author": "tompori <nuorivaara@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^4.1.0",
+    "sleep-ms": "^2.0.1",
     "typescript": "^3.4.5"
   },
   "dependencies": {
@@ -14,6 +16,7 @@
   },
   "scripts": {
     "dev": "parcel src/index.html",
+    "start": "concurrently \"parcel src/index.html\" \"sleepms 500 && open http://localhost:1234\"",
     "build": "parcel build src/index.html"
   }
 }
