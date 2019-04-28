@@ -47,4 +47,7 @@
   /* Box-shadow */
   --box-shadow-sm: 0 2px 8px var(--color-shadow);
   --box-shadow-md: 0 2px 16px var(--color-shadow);
+
+  /* Transition */
+  --transition-default: 0.25s;
 }
