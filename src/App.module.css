@@ -1,3 +1,7 @@
+/* Reset css */
+@import "reset-css";
+
+/* App styles */
 @import "./styles/variables.css";
 
 .App {
