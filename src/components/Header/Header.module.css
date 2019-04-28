@@ -1,0 +1,19 @@
+@import "../../styles/variables.css";
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--spacer-md) var(--spacer-lg);
+}
+
+.addGame {
+  background-color: var(--color-theme-90);
+  color: var(--color-text-on-dark);
+  padding: var(--spacer-sm) var(--spacer-lg);
+  text-decoration: none;
+  transition: background-color 0.25s;
+}
+.addGame:hover {
+  background-color: var(--color-theme-80);
+}

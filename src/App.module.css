@@ -1,3 +1,10 @@
+@import "./styles/variables.css";
+
 .App {
+  color: var(--color-text);
   font-size: 16px;
+}
+
+.contentArea {
+  padding: var(--spacer-xl) var(--spacer-lg);
 }

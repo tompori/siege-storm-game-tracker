@@ -1,0 +1,32 @@
+/*** CSS variables ***/
+
+:root {
+  /* Colors */
+  /* http://www.colorbox.io/#steps=11#hue_start=36#hue_end=25#hue_curve=easeInOutCubic#sat_start=3#sat_end=87#sat_curve=easeInOutCubic#sat_rate=190#lum_start=100#lum_end=13#lum_curve=easeOutQuad#minor_steps_map=0 */
+  --color-text: #333333;
+  --color-text-on-dark: #ffffff;
+  --color-bg: #ffffff;
+  --color-theme-primary: #cc7018;
+  --color-theme-0: #fff9f0;
+  --color-theme-5: #fdf6ec;
+  --color-theme-10: #fbf3e7;
+  --color-theme-20: #f5e7d2;
+  --color-theme-30: #ecd1ad;
+  --color-theme-40: #dead70;
+  --color-theme-50: #cc7018;
+  --color-theme-60: #b55200;
+  --color-theme-70: #974200;
+  --color-theme-80: #733100;
+  --color-theme-90: #4b1f00;
+  --color-theme-100: #210e00;
+
+  /* Spacing */
+  --spacer-xxs: 2px;
+  --spacer-xs: 4px;
+  --spacer-sm: 8px;
+  --spacer-smmd: 12px;
+  --spacer-md: 16px;
+  --spacer-mdlg: 24px;
+  --spacer-lg: 32px;
+  --spacer-xl: 64px;
+}
