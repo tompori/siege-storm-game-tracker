@@ -32,6 +32,7 @@
   --color-grey-80: #606060;
   --color-grey-90: #323232;
   --color-grey-100: #030303;
+  --color-shadow: rgba(0, 0, 0, 0.15);
 
   /* Spacing */
   --spacer-xxs: 2px;
@@ -42,4 +43,8 @@
   --spacer-mdlg: 24px;
   --spacer-lg: 32px;
   --spacer-xl: 64px;
+
+  /* Box-shadow */
+  --box-shadow-sm: 0 2px 8px var(--color-shadow);
+  --box-shadow-md: 0 2px 16px var(--color-shadow);
 }
