@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Header.module.css";
+import * as React from "react";
+import * as styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import MaterialIcon from "material-icons-react";
 

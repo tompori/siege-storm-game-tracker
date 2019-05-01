@@ -1,11 +1,31 @@
-import React from "react";
-import styles from "./App.module.css";
+import * as React from "react";
+import * as styles from "./App.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from "./components/Header/Header";
 import ListGames from "./paths/ListGames/ListGames";
 import AddGame from "./paths/AddGame/AddGame";
 
-export default class App extends React.Component<{}, {}> {
+interface IAppState {
+  formData: {
+    gameType: string;
+  };
+}
+
+export default class App extends React.Component<{}, IAppState> {
+  private _emptyFormData = {
+    gameType: null
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      formData: {
+        ...this._emptyFormData
+      }
+    };
+  }
+
   public render() {
     return (
       <Router>

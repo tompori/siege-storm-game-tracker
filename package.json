@@ -6,6 +6,8 @@
   "author": "tompori <nuorivaara@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
     "concurrently": "^4.1.0",
     "parcel-plugin-css-modules-type-generator": "^1.1.0",
     "sleep-ms": "^2.0.1",
