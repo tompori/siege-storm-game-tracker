@@ -1,0 +1,12 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.choiceGroupItem {
+  @extend %buttonPrimary;
+  margin-right: $spacer-md;
+}

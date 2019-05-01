@@ -1,14 +1,16 @@
 import * as React from "react";
-import * as styles from "./App.module.css";
+import * as styles from "./App.module.scss";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from "./components/Header/Header";
 import ListGames from "./paths/ListGames/ListGames";
 import AddGame from "./paths/AddGame/AddGame";
 
+export interface IFormData {
+  gameType: string;
+}
+
 interface IAppState {
-  formData: {
-    gameType: string;
-  };
+  formData: IFormData;
 }
 
 export default class App extends React.Component<{}, IAppState> {
@@ -33,10 +35,28 @@ export default class App extends React.Component<{}, IAppState> {
           <Header />
           <div className={styles.contentArea}>
             <Route exact path="/" component={ListGames} />
-            <Route path="/add" component={AddGame} />
+            <Route
+              path="/add"
+              render={props => (
+                <AddGame
+                  {...props}
+                  formData={this.state.formData}
+                  handleChange={this._handleFormChange.bind(this)}
+                />
+              )}
+            />
           </div>
         </div>
       </Router>
     );
+  }
+
+  private _handleFormChange(key: string, value: string): void {
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [key]: value
+      }
+    });
   }
 }

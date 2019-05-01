@@ -1,0 +1,20 @@
+@import "./variables.scss";
+
+%buttonPrimary {
+  background-color: $color-theme-90;
+  color: $color-text-on-dark;
+  cursor: pointer;
+  padding: $spacer-sm $spacer-lg $spacer-sm $spacer-mdlg;
+  text-decoration: none;
+  transition: background-color $transition-default;
+
+  &:hover {
+    background-color: $color-theme-80;
+  }
+
+  & i {
+    color: $color-text-on-dark;
+    margin-right: $spacer-sm;
+    transform: translateY(6px);
+  }
+}

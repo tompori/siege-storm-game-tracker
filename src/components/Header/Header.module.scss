@@ -1,0 +1,25 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.header {
+  align-items: baseline;
+  box-shadow: $box-shadow-sm;
+  display: flex;
+  justify-content: space-between;
+  padding: $spacer-md $spacer-lg $spacer-mdlg;
+}
+
+/* Add a game button */
+.addGame {
+  @extend %buttonPrimary;
+}
+
+/* Navigation links */
+.link {
+  color: $color-theme-primary;
+  text-decoration: none;
+  transition: color $transition-default;
+}
+.link:hover {
+  color: $color-theme-70;
+}
