@@ -51,11 +51,11 @@ export default class App extends React.Component<{}, IAppState> {
     );
   }
 
-  private _handleFormChange(key: string, value: string): void {
+  private _handleFormChange(valueKey: string, value: string): void {
     this.setState({
       formData: {
         ...this.state.formData,
-        [key]: value
+        [valueKey]: value
       }
     });
   }

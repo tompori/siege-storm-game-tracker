@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.ChoiceGroup {
+  .choiceGroupItem {
+    @extend %buttonPrimary;
+    margin-right: $spacer-md;
+  }
+
+  .choiceTitle {
+    padding-left: $spacer-xs;
+  }
+}

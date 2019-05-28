@@ -1,6 +1,8 @@
 import * as React from "react";
-import * as styles from "./AddGame.module.scss";
 import { IFormData } from "../../App";
+import ChoiceGroup from "../../components/ChoiceGroup/ChoiceGroup";
+
+import * as styles from "./AddGame.module.scss";
 
 export interface IAddGameProps {
   handleChange: (key: string, value: string) => void;
@@ -14,26 +16,21 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
         <div>
           <span>Game type</span>
         </div>
-        <div>
-          <label className={styles.choiceGroupItem}>
-            <input
-              type="radio"
-              value="solo"
-              checked={this.props.formData.gameType === "solo"}
-              onChange={event => this._handleOptionChange(event)}
-            />
-            Solo
-          </label>
-          <label className={styles.choiceGroupItem}>
-            <input
-              type="radio"
-              value="pvp"
-              checked={this.props.formData.gameType === "pvp"}
-              onChange={event => this._handleOptionChange(event)}
-            />
-            PvP
-          </label>
-        </div>
+        <ChoiceGroup
+          choices={[
+            {
+              title: "Solo",
+              value: "solo"
+            },
+            {
+              title: "PvP",
+              value: "pvp"
+            }
+          ]}
+          handleChange={this.props.handleChange}
+          stateData={this.props.formData}
+          valueKey="gameType"
+        />
       </form>
     );
   }
@@ -41,9 +38,5 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
   private _handleSubmit(event): void {
     event.preventDefault();
     console.log("Submitted!");
-  }
-
-  private _handleOptionChange(event: React.FormEvent<HTMLInputElement>) {
-    this.props.handleChange("gameType", event.currentTarget.value);
   }
 }
