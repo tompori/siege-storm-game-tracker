@@ -2,6 +2,8 @@
 @import "../../styles/mixins.scss";
 
 .ChoiceGroup {
+  margin: $spacer-sm $spacer-md $spacer-lg;
+
   .choiceGroupItem {
     @extend %buttonPrimary;
     margin-right: $spacer-md;
