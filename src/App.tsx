@@ -6,7 +6,12 @@ import ListGames from "./paths/ListGames/ListGames";
 import AddGame from "./paths/AddGame/AddGame";
 
 export interface IFormData {
+  boss: string;
+  bossDifficulty: string;
+  bossFactionAdvanced: string;
+  bossFactionBasic: string;
   gameType: string;
+  wonLost: string;
 }
 
 interface IAppState {
@@ -15,7 +20,12 @@ interface IAppState {
 
 export default class App extends React.Component<{}, IAppState> {
   private _emptyFormData = {
-    gameType: null
+    boss: null,
+    bossDifficulty: null,
+    bossFactionAdvanced: null,
+    bossFactionBasic: null,
+    gameType: null,
+    wonLost: null
   };
 
   constructor(props) {

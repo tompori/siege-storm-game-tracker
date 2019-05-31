@@ -16,8 +16,8 @@ interface IChoiceGroupProps {
 const ChoiceGroup: React.FunctionComponent<IChoiceGroupProps> = props => {
   return (
     <div className={styles.ChoiceGroup}>
-      {props.choices.map(choice => (
-        <label className={styles.choiceGroupItem}>
+      {props.choices.map((choice, index) => (
+        <label className={styles.choiceGroupItem} key={index}>
           <input
             type="radio"
             value={choice.value}
