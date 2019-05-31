@@ -9,7 +9,17 @@
     margin-right: $spacer-md;
   }
 
+  .choiceGroupItem.isSelected {
+    background-color: $color-theme-70;
+    box-shadow: 0 2px 2px 0 $color-theme-80 inset;
+  }
+
+  input {
+    display: none;
+  }
+
   .choiceTitle {
     padding-left: $spacer-xs;
+    user-select: none;
   }
 }
