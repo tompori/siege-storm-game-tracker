@@ -11,7 +11,6 @@ export interface ITextFieldProps {
   label?: string;
   placeholder?: string;
   stateData: IFormData;
-  value: string;
   valueKey: string;
 }
 
