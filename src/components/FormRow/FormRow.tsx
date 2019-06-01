@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import styles from "./FormRow.module.scss";
+
 interface IFormRowProps {
   condition?: boolean;
   title: string;
@@ -13,7 +15,7 @@ const FormRow: React.FunctionComponent<IFormRowProps> = ({
   return (
     condition && (
       <React.Fragment>
-        <div>
+        <div className={styles.formRowTitleWrapper}>
           <span>{title}</span>
         </div>
         {children}

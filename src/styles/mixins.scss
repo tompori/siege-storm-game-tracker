@@ -2,9 +2,11 @@
 
 %buttonPrimary {
   background-color: $color-theme-90;
+  box-sizing: border-box;
   color: $color-text-on-dark;
   cursor: pointer;
-  padding: $spacer-sm $spacer-lg $spacer-sm $spacer-mdlg;
+  display: inline-block;
+  padding: $spacer-smmd $spacer-lg;
   text-decoration: none;
   transition: background-color $transition-default;
 
