@@ -162,8 +162,9 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
           </FormRow>
           <FormRow
             condition={
-              !!this.props.formData.bossHealth &&
-              !!this.props.formData.bossResources
+              (!!this.props.formData.bossHealth &&
+                !!this.props.formData.bossResources) ||
+              !!this.props.formData.playerFaction
             }
             title="Which faction did you play as?"
           >
@@ -201,7 +202,81 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
   }
 
   private renderPvpForm() {
-    return this.props.formData.gameType === "pvp" && this.renderWonLostRow();
+    return (
+      this.props.formData.gameType === "pvp" && (
+        <React.Fragment>
+          {this.renderWonLostRow()}
+          <FormRow
+            condition={!!this.props.formData.wonLost}
+            title="Which faction did you play as?"
+          >
+            <ChoiceGroup
+              choices={Object.keys(PlayerFactions).map(factionKey => {
+                const faction = PlayerFactions[factionKey];
+                return {
+                  title: faction.name,
+                  value: faction.id
+                };
+              })}
+              handleChange={this.props.handleChange}
+              stateData={this.props.formData}
+              valueKey="playerFaction"
+            />
+          </FormRow>
+          <FormRow
+            condition={!!this.props.formData.playerFaction}
+            title="How much resources did you have left?"
+          >
+            <div>
+              <TextField
+                handleChange={this.props.handleChange}
+                inputType="number"
+                label="Resources"
+                placeholder="34"
+                stateData={this.props.formData}
+                valueKey="playerResources"
+              />
+            </div>
+          </FormRow>
+          <FormRow
+            condition={
+              !!this.props.formData.playerFaction &&
+              (!!this.props.formData.playerResources ||
+                !!this.props.formData.opponentFaction)
+            }
+            title="Which faction did your opponent play as?"
+          >
+            <ChoiceGroup
+              choices={Object.keys(PlayerFactions).map(factionKey => {
+                const faction = PlayerFactions[factionKey];
+                return {
+                  title: faction.name,
+                  value: faction.id
+                };
+              })}
+              handleChange={this.props.handleChange}
+              stateData={this.props.formData}
+              valueKey="opponentFaction"
+            />
+          </FormRow>
+          <FormRow
+            condition={!!this.props.formData.opponentFaction}
+            title="How much resources did they have left?"
+          >
+            <div>
+              <TextField
+                handleChange={this.props.handleChange}
+                inputType="number"
+                label="Resources"
+                placeholder="34"
+                stateData={this.props.formData}
+                valueKey="opponentResources"
+              />
+            </div>
+          </FormRow>
+        </React.Fragment>
+      )
+    );
   }
 
   private renderWonLostRow() {

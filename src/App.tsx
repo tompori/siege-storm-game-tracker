@@ -13,6 +13,8 @@ export interface IFormData {
   bossHealth: string;
   bossResources: string;
   gameType: string;
+  opponentFaction: string;
+  opponentResources: string;
   playerFaction: string;
   playerResources: string;
   wonLost: string;
@@ -31,6 +33,8 @@ export default class App extends React.Component<{}, IAppState> {
     bossHealth: "",
     bossResources: "",
     gameType: "",
+    opponentFaction: "",
+    opponentResources: "",
     playerFaction: "",
     playerResources: "",
     wonLost: ""
@@ -69,25 +73,23 @@ export default class App extends React.Component<{}, IAppState> {
     );
   }
 
-  public async componentDidUpdate(prevProps, prevState) {
+  public componentDidUpdate(prevProps, prevState) {
     // Automatically input player resources based on won/lost state
     if (prevState.formData.wonLost !== this.state.formData.wonLost) {
-      if (this.state.formData.wonLost === "lost") {
-        this.setState({
-          formData: {
-            ...this.state.formData,
-            playerResources: "0"
-          }
-        });
-      }
-      if (this.state.formData.wonLost === "won") {
-        await this.setState({
-          formData: {
-            ...this.state.formData,
-            playerResources: ""
-          }
-        });
-      }
+      const newResources = {
+        playerResources: this.state.formData.wonLost === "lost" ? "0" : "",
+        opponentResources:
+          this.state.formData.gameType === "pvp" &&
+          this.state.formData.wonLost === "won"
+            ? "0"
+            : ""
+      };
+      this.setState({
+        formData: {
+          ...this.state.formData,
+          ...newResources
+        }
+      });
     }
   }
 
