@@ -5,6 +5,7 @@ import ChoiceGroup from "../../components/ChoiceGroup/ChoiceGroup";
 import TextField from "../../components/TextField/TextField";
 import Bosses from "../../constants/Bosses";
 import BossFactions from "../../constants/BossFactions";
+import PlayerFactions from "../../constants/PlayerFactions";
 
 import * as styles from "./AddGame.module.scss";
 
@@ -156,6 +157,41 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
                 }
                 stateData={this.props.formData}
                 valueKey="bossResources"
+              />
+            </div>
+          </FormRow>
+          <FormRow
+            condition={
+              !!this.props.formData.bossHealth &&
+              !!this.props.formData.bossResources
+            }
+            title="Which faction did you play as?"
+          >
+            <ChoiceGroup
+              choices={Object.keys(PlayerFactions).map(factionKey => {
+                const faction = PlayerFactions[factionKey];
+                return {
+                  title: faction.name,
+                  value: faction.id
+                };
+              })}
+              handleChange={this.props.handleChange}
+              stateData={this.props.formData}
+              valueKey="playerFaction"
+            />
+          </FormRow>
+          <FormRow
+            condition={!!this.props.formData.playerFaction}
+            title="How much resources did you have left?"
+          >
+            <div>
+              <TextField
+                handleChange={this.props.handleChange}
+                inputType="number"
+                label="Resources"
+                placeholder="34"
+                stateData={this.props.formData}
+                valueKey="playerResources"
               />
             </div>
           </FormRow>

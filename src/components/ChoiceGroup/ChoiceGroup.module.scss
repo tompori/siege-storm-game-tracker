@@ -4,7 +4,7 @@
 .ChoiceGroup {
   .choiceGroupItem {
     @extend %buttonPrimary;
-    margin-right: $spacer-md;
+    margin: 0 $spacer-md $spacer-sm 0;
   }
 
   .choiceGroupItem.isSelected {

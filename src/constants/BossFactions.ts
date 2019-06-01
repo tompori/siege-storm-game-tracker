@@ -1,12 +1,12 @@
 type FactionType = "basic" | "advanced";
 
-export interface iFaction {
+export interface iBossFaction {
   id: string;
   name: string;
   type: FactionType;
 }
 
-const BossFactions: { [key: string]: iFaction } = {
+const BossFactions: { [key: string]: iBossFaction } = {
   evilGoblins: {
     id: "evilGoblins",
     name: "Evil Goblins",

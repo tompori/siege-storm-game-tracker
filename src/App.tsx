@@ -10,7 +10,11 @@ export interface IFormData {
   bossDifficulty: string;
   bossFactionAdvanced: string;
   bossFactionBasic: string;
+  bossHealth: string;
+  bossResources: string;
   gameType: string;
+  playerFaction: string;
+  playerResources: string;
   wonLost: string;
 }
 
@@ -20,12 +24,16 @@ interface IAppState {
 
 export default class App extends React.Component<{}, IAppState> {
   private _emptyFormData = {
-    boss: null,
-    bossDifficulty: null,
-    bossFactionAdvanced: null,
-    bossFactionBasic: null,
-    gameType: null,
-    wonLost: null
+    boss: "",
+    bossDifficulty: "",
+    bossFactionAdvanced: "",
+    bossFactionBasic: "",
+    bossHealth: "",
+    bossResources: "",
+    gameType: "",
+    playerFaction: "",
+    playerResources: "",
+    wonLost: ""
   };
 
   constructor(props) {
@@ -59,6 +67,28 @@ export default class App extends React.Component<{}, IAppState> {
         </div>
       </Router>
     );
+  }
+
+  public async componentDidUpdate(prevProps, prevState) {
+    // Automatically input player resources based on won/lost state
+    if (prevState.formData.wonLost !== this.state.formData.wonLost) {
+      if (this.state.formData.wonLost === "lost") {
+        this.setState({
+          formData: {
+            ...this.state.formData,
+            playerResources: "0"
+          }
+        });
+      }
+      if (this.state.formData.wonLost === "won") {
+        await this.setState({
+          formData: {
+            ...this.state.formData,
+            playerResources: ""
+          }
+        });
+      }
+    }
   }
 
   private _handleFormChange(valueKey: string, value: string): void {

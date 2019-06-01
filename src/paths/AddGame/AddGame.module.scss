@@ -4,6 +4,6 @@
 .form {
   display: grid;
   grid-column-gap: $spacer-md;
-  grid-row-gap: $spacer-mdlg;
+  grid-row-gap: $spacer-md;
   grid-template-columns: 1fr 2fr;
 }

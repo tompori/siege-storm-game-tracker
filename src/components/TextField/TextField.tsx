@@ -11,6 +11,7 @@ export interface ITextFieldProps {
   label?: string;
   placeholder?: string;
   stateData: IFormData;
+  value: string;
   valueKey: string;
 }
 
@@ -26,6 +27,7 @@ const TextField: React.FunctionComponent<ITextFieldProps> = props => {
           props.handleChange(props.valueKey, event.target.value)
         }
         placeholder={props.placeholder}
+        min={props.inputType === "number" && "0"}
       />
     </React.Fragment>
   );
