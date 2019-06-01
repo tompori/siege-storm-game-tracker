@@ -25,13 +25,15 @@ const TextField: React.FunctionComponent<ITextFieldProps> = props => {
         onChange={event =>
           props.handleChange(props.valueKey, event.target.value)
         }
+        placeholder={props.placeholder}
       />
     </React.Fragment>
   );
 };
 
 TextField.defaultProps = {
-  inputType: "text"
+  inputType: "text",
+  placeholder: ""
 };
 
 export default TextField;

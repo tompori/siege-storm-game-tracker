@@ -65,8 +65,12 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
             <ChoiceGroup
               choices={
                 !!this.props.formData.boss &&
-                Bosses[this.props.formData.boss].difficulties.map(
-                  difficulty => {
+                Object.keys(Bosses[this.props.formData.boss].difficulties).map(
+                  difficultyKey => {
+                    const difficulty =
+                      Bosses[this.props.formData.boss].difficulties[
+                        difficultyKey
+                      ];
                     return { title: difficulty.name, value: difficulty.id };
                   }
                 )
@@ -125,6 +129,15 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
                 handleChange={this.props.handleChange}
                 inputType="number"
                 label="Health"
+                placeholder={
+                  this.props.formData.boss &&
+                  this.props.formData.bossDifficulty &&
+                  String(
+                    Bosses[this.props.formData.boss].difficulties[
+                      this.props.formData.bossDifficulty
+                    ].health
+                  )
+                }
                 stateData={this.props.formData}
                 valueKey="bossHealth"
               />
@@ -132,6 +145,15 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
                 handleChange={this.props.handleChange}
                 inputType="number"
                 label="Resources"
+                placeholder={
+                  this.props.formData.boss &&
+                  this.props.formData.bossDifficulty &&
+                  String(
+                    Bosses[this.props.formData.boss].difficulties[
+                      this.props.formData.bossDifficulty
+                    ].resources
+                  )
+                }
                 stateData={this.props.formData}
                 valueKey="bossResources"
               />
