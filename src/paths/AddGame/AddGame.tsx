@@ -2,6 +2,7 @@ import * as React from "react";
 import { IFormData } from "../../App";
 import FormRow from "../../components/FormRow/FormRow";
 import ChoiceGroup from "../../components/ChoiceGroup/ChoiceGroup";
+import TextField from "../../components/TextField/TextField";
 import Bosses from "../../constants/Bosses";
 import BossFactions from "../../constants/BossFactions";
 
@@ -15,7 +16,7 @@ export interface IAddGameProps {
 export default class AddGame extends React.Component<IAddGameProps, {}> {
   public render() {
     return (
-      <form onSubmit={this._handleSubmit} className={styles.form}>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
         <FormRow title="Did you play solo or against another player?">
           <ChoiceGroup
             choices={[
@@ -115,6 +116,27 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
               valueKey="bossFactionAdvanced"
             />
           </FormRow>
+          <FormRow
+            condition={!!this.props.formData.bossFactionAdvanced}
+            title="How much health and resources did they have left?"
+          >
+            <div>
+              <TextField
+                handleChange={this.props.handleChange}
+                inputType="number"
+                label="Health"
+                stateData={this.props.formData}
+                valueKey="bossHealth"
+              />
+              <TextField
+                handleChange={this.props.handleChange}
+                inputType="number"
+                label="Resources"
+                stateData={this.props.formData}
+                valueKey="bossResources"
+              />
+            </div>
+          </FormRow>
         </React.Fragment>
       )
     );
@@ -146,7 +168,7 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
     );
   }
 
-  private _handleSubmit(event): void {
+  private handleSubmit(event): void {
     event.preventDefault();
     console.log("Submitted!");
   }

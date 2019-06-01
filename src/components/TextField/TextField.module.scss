@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+
+.label {
+  margin-right: $spacer-sm;
+}
+
+.input {
+  font-size: 19px;
+  margin-right: $spacer-lg;
+  padding: 6px $spacer-sm;
+}
+
+.input.number {
+  max-width: 50px;
+}

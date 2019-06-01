@@ -12,6 +12,7 @@
 /* Add a game button */
 .addGame {
   @extend %buttonPrimary;
+  padding: $spacer-sm $spacer-lg $spacer-smmd $spacer-mdlg;
 }
 
 /* Navigation links */
