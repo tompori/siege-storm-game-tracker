@@ -6,12 +6,14 @@ import TextField from "../../components/TextField/TextField";
 import Bosses from "../../constants/Bosses";
 import BossFactions from "../../constants/BossFactions";
 import PlayerFactions from "../../constants/PlayerFactions";
+import { ISoloGame, IPvpGame } from "../../App";
 
 import * as styles from "./AddGame.module.scss";
 
 export interface IAddGameProps {
-  handleChange: (key: string, value: string) => void;
   formData: IFormData;
+  handleChange: (key: string, value: string) => void;
+  handleSubmit: (gameData: ISoloGame | IPvpGame) => void;
 }
 
 export default class AddGame extends React.Component<IAddGameProps, {}> {
@@ -37,6 +39,7 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
         </FormRow>
         {this.renderSoloForm()}
         {this.renderPvpForm()}
+        {this.renderSubmitButton()}
       </form>
     );
   }
@@ -279,6 +282,39 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
     );
   }
 
+  private renderSubmitButton() {
+    const formData = this.props.formData;
+    if (
+      (formData.gameType === "solo" &&
+        formData.wonLost &&
+        formData.boss &&
+        formData.bossDifficulty &&
+        formData.bossFactionBasic &&
+        formData.bossFactionAdvanced &&
+        formData.bossHealth &&
+        formData.bossResources &&
+        formData.playerFaction &&
+        formData.playerResources) ||
+      (formData.gameType === "pvp" &&
+        formData.wonLost &&
+        formData.opponentFaction &&
+        formData.opponentResources &&
+        formData.playerFaction &&
+        formData.playerResources)
+    ) {
+      return (
+        <div className={styles.submitRow}>
+          <button
+            className={styles.submitButton}
+            onClick={event => this.handleSubmit(event)}
+          >
+            Save
+          </button>
+        </div>
+      );
+    }
+  }
+
   private renderWonLostRow() {
     return (
       <FormRow condition={!!this.props.formData.gameType} title="Did you win?">
@@ -302,7 +338,48 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
   }
 
   private handleSubmit(event): void {
+    // Prevemt default submit
     event.preventDefault();
-    console.log("Submitted!");
+
+    // Define some helpoers
+    const formData = this.props.formData;
+    const currentDateTime = new Date();
+    const schemaVersion = "1";
+
+    // Submit solo game
+    if (formData.gameType === "solo") {
+      const gameData: ISoloGame = {
+        boss: formData.boss,
+        bossDifficulty: formData.bossDifficulty,
+        bossFactionAdvanced: formData.bossFactionAdvanced,
+        bossFactionBasic: formData.bossFactionBasic,
+        bossHealth: formData.bossHealth,
+        bossResources: formData.bossResources,
+        created: currentDateTime,
+        gameType: formData.gameType,
+        modified: currentDateTime,
+        playerFaction: formData.playerFaction,
+        playerResources: formData.playerResources,
+        schemaVersion: schemaVersion,
+        wonLost: formData.wonLost
+      };
+      this.props.handleSubmit(gameData);
+    }
+
+    // Submit PvP games
+    if (this.props.formData.gameType === "pvp") {
+      const gameData: IPvpGame = {
+        created: currentDateTime,
+        gameType: formData.gameType,
+        modified: currentDateTime,
+        opponentFaction: formData.opponentFaction,
+        opponentResources: formData.opponentResources,
+        playerFaction: formData.playerFaction,
+        playerResources: formData.playerResources,
+        schemaVersion: schemaVersion,
+        wonLost: formData.wonLost
+      };
+      this.props.handleSubmit(gameData);
+    }
   }
 }

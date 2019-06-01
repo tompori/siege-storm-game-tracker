@@ -20,7 +20,32 @@ export interface IFormData {
   wonLost: string;
 }
 
+export interface IGame {
+  created: Date;
+  gameType: string;
+  modified: Date;
+  playerFaction: string;
+  playerResources: string;
+  schemaVersion: string;
+  wonLost: string;
+}
+
+export interface ISoloGame extends IGame {
+  boss: string;
+  bossDifficulty: string;
+  bossFactionAdvanced: string;
+  bossFactionBasic: string;
+  bossHealth: string;
+  bossResources: string;
+}
+
+export interface IPvpGame extends IGame {
+  opponentFaction: string;
+  opponentResources: string;
+}
+
 interface IAppState {
+  games: Array<ISoloGame | IPvpGame>;
   formData: IFormData;
 }
 
@@ -44,6 +69,7 @@ export default class App extends React.Component<{}, IAppState> {
     super(props);
 
     this.state = {
+      games: [],
       formData: {
         ...this._emptyFormData
       }
@@ -63,7 +89,8 @@ export default class App extends React.Component<{}, IAppState> {
                 <AddGame
                   {...props}
                   formData={this.state.formData}
-                  handleChange={this._handleFormChange.bind(this)}
+                  handleChange={this.handleFormChange.bind(this)}
+                  handleSubmit={this.handleSubmit.bind(this)}
                 />
               )}
             />
@@ -93,12 +120,19 @@ export default class App extends React.Component<{}, IAppState> {
     }
   }
 
-  private _handleFormChange(valueKey: string, value: string): void {
+  private handleFormChange(valueKey: string, value: string): void {
     this.setState({
       formData: {
         ...this.state.formData,
         [valueKey]: value
       }
+    });
+  }
+
+  private handleSubmit(gameData: ISoloGame | IPvpGame): void {
+    this.setState({
+      games: [{ ...gameData }, ...this.state.games],
+      formData: { ...this._emptyFormData }
     });
   }
 }

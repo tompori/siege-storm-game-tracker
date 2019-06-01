@@ -6,6 +6,8 @@
   color: $color-text-on-dark;
   cursor: pointer;
   display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-size: $font-size-md;
   padding: $spacer-smmd $spacer-lg;
   text-decoration: none;
   transition: background-color $transition-default;

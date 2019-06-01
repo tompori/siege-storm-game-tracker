@@ -7,3 +7,14 @@
   grid-row-gap: $spacer-md;
   grid-template-columns: 1fr 2fr;
 }
+
+.submitRow {
+  display: flex;
+  grid-column-end: 3;
+  grid-column-start: 1;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  @extend %buttonPrimary;
+}
