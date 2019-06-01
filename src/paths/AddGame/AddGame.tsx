@@ -98,7 +98,7 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
           </FormRow>
           <FormRow
             condition={!!this.props.formData.bossFactionBasic}
-            title="And which advances faction?"
+            title="And which advanced faction?"
           >
             <ChoiceGroup
               choices={Object.keys(BossFactions)
