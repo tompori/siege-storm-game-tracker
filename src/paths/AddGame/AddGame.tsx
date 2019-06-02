@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IFormData } from "../../App";
+import { IFormData, IGame } from "../../App";
 import FormRow from "../../components/FormRow/FormRow";
 import ChoiceGroup from "../../components/ChoiceGroup/ChoiceGroup";
 import TextField from "../../components/TextField/TextField";
@@ -7,6 +7,7 @@ import Bosses from "../../constants/Bosses";
 import BossFactions from "../../constants/BossFactions";
 import PlayerFactions from "../../constants/PlayerFactions";
 import { ISoloGame, IPvpGame } from "../../App";
+import uuidv1 from "uuid/v1";
 
 import * as styles from "./AddGame.module.scss";
 
@@ -346,22 +347,28 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
     const currentDateTime = new Date();
     const schemaVersion = "1";
 
+    // Define base game data, common for all game types
+    const baseGameData: IGame = {
+      created: currentDateTime,
+      gameType: formData.gameType,
+      id: uuidv1(),
+      modified: currentDateTime,
+      playerFaction: formData.playerFaction,
+      playerResources: formData.playerResources,
+      schemaVersion: schemaVersion,
+      wonLost: formData.wonLost
+    };
+
     // Submit solo game
-    if (formData.gameType === "solo") {
+    if (baseGameData.gameType === "solo") {
       const gameData: ISoloGame = {
+        ...baseGameData,
         boss: formData.boss,
         bossDifficulty: formData.bossDifficulty,
         bossFactionAdvanced: formData.bossFactionAdvanced,
         bossFactionBasic: formData.bossFactionBasic,
         bossHealth: formData.bossHealth,
-        bossResources: formData.bossResources,
-        created: currentDateTime,
-        gameType: formData.gameType,
-        modified: currentDateTime,
-        playerFaction: formData.playerFaction,
-        playerResources: formData.playerResources,
-        schemaVersion: schemaVersion,
-        wonLost: formData.wonLost
+        bossResources: formData.bossResources
       };
       this.props.handleSubmit(gameData);
     }
@@ -369,15 +376,9 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
     // Submit PvP games
     if (this.props.formData.gameType === "pvp") {
       const gameData: IPvpGame = {
-        created: currentDateTime,
-        gameType: formData.gameType,
-        modified: currentDateTime,
+        ...baseGameData,
         opponentFaction: formData.opponentFaction,
-        opponentResources: formData.opponentResources,
-        playerFaction: formData.playerFaction,
-        playerResources: formData.playerResources,
-        schemaVersion: schemaVersion,
-        wonLost: formData.wonLost
+        opponentResources: formData.opponentResources
       };
       this.props.handleSubmit(gameData);
     }

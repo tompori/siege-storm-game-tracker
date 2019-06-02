@@ -23,6 +23,7 @@ export interface IFormData {
 export interface IGame {
   created: Date;
   gameType: string;
+  id: string;
   modified: Date;
   playerFaction: string;
   playerResources: string;
