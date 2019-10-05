@@ -8,6 +8,7 @@
   "devDependencies": {
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^5.1.0",
     "concurrently": "^4.1.0",
     "parcel-plugin-css-modules-type-generator": "^1.1.0",
     "sass": "^1.19.0",

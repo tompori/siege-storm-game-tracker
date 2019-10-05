@@ -8,10 +8,11 @@ import BossFactions from "../../constants/BossFactions";
 import PlayerFactions from "../../constants/PlayerFactions";
 import { ISoloGame, IPvpGame } from "../../App";
 import uuidv1 from "uuid/v1";
+import { RouteComponentProps } from "react-router-dom";
 
 import * as styles from "./AddGame.module.scss";
 
-export interface IAddGameProps {
+export interface IAddGameProps extends RouteComponentProps<any> {
   formData: IFormData;
   handleChange: (key: string, value: string) => void;
   handleSubmit: (gameData: ISoloGame | IPvpGame) => void;
@@ -307,7 +308,10 @@ export default class AddGame extends React.Component<IAddGameProps, {}> {
         <div className={styles.submitRow}>
           <button
             className={styles.submitButton}
-            onClick={event => this.handleSubmit(event)}
+            onClick={event => {
+              this.handleSubmit(event);
+              this.props.history.push("/");
+            }}
           >
             Save
           </button>
